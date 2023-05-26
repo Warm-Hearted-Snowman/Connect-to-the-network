@@ -2,6 +2,10 @@ from json import load, dump
 from sys import argv
 from requests import post, get
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+
 
 username, password = str(), str()
 
@@ -67,6 +71,17 @@ def connect():
         print('You are logged in with ( %s )' % username)
     else:
         print("Message : %s" % res)
+
+def check_remain_traffic():
+    options = Options()
+    options.add_argument('--headless')
+    with webdriver.Chrome(options=options) as driver:
+        driver.get("https://shahvar.shahroodut.ac.ir/IBSng/user/")
+        driver.find_element('name', 'normal_username').send_keys(username)
+        driver.find_element('name', 'normal_password').send_keys(password)
+        driver.find_element(By.CLASS_NAME, "Form_Foot_Buttons").click()
+        remain = driver.find_elements(By.CLASS_NAME, "Form_Content_Row_Right_2Col_light")[1].text.split(' ')[0]
+    print(f'Remain Credit: {remain} MB')
 
 
 args = argv[1:]
@@ -150,6 +165,11 @@ try:
         else:
             print('You are log in with ( %s )' %
                   primary_login_data[index + 8:index + 16])
+    elif args[0] == '7' or args[0] == '-R':
+        show_login_datas(primary_login_data)
+        user = input("\nUser to login with ?\n")
+        username, password = set_user_data(primary_login_data, user)
+        check_remain_traffic()
     else:
         print("use --help handle to run correct commands.")
 except:
