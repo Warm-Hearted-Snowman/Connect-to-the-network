@@ -1,7 +1,7 @@
 # SUT Network Connection
 This is a python program make an easy way to connect to SUT Internet !
 ## Requirements
-We used ```beautifulsoup4``` and ```requests``` libraries in this project.
+We used ```selenium``` , ```beautifulsoup4``` and ```requests``` libraries in this project.
 Use ```pip install``` to code work successfully :
 ```
 pip install -r requirements.txt 
@@ -21,6 +21,7 @@ $ python CTW.py --help
     -lo : Log out                               (6)
     -A  : Show all users                        (7)
     -S  : Show status                           (8)
+    -R  : Show remain credit                    (9)
     
 
 ```
