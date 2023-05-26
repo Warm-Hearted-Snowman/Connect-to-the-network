@@ -165,7 +165,7 @@ try:
         else:
             print('You are log in with ( %s )' %
                   primary_login_data[index + 8:index + 16])
-    elif args[0] == '7' or args[0] == '-R':
+    elif args[0] == '9' or args[0] == '-R':
         show_login_datas(primary_login_data)
         user = input("\nUser to login with ?\n")
         username, password = set_user_data(primary_login_data, user)
